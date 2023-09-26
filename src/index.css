@@ -21,7 +21,14 @@ body {
   margin: 0;
   color: #333;
   font-family: 'Poppins';
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
+  background-image: linear-gradient(to right,
+      rgb(46, 249, 243, 0.2),
+      rgb(255, 229, 229, 0.2),
+      rgb(185, 255, 130, 0.2),
+      rgb(200, 92, 229, 0.2),
+      rgb(219, 70, 70, 0.2));
+  ;
 }
 
 nav {
@@ -125,6 +132,18 @@ form button {
   border: 0;
   border-radius: 6px;
   padding: 6px 8px;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+
+/* order-by buttons */
+.order-by button {
+  margin-right: 10px;
+  background: var(--five);
+  color: #fff;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 6px;
   font-family: "Poppins";
   cursor: pointer;
 }

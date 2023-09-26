@@ -11,7 +11,33 @@ const Update = () => {
   const [title, setTitle] = useState('')
   const [ingredients, setIngredients] = useState('')
   const [rating, setRating] = useState('')
+  const [formError, setFormError] = useState(null) 
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!title || !ingredients || !rating) {
+      setFormError('Please fill in all the fields correctly.')
+      return      
+    }
+const {data, error} = await supabase
+.from('five-alive-varieties')
+.update([{ title, ingredients, rating }]) //update the records
+.eq('id', id) //to select the record to update. 'Update record where id EQuals id in route parameter
+.select()//to get data back
+
+if (error){
+  setFormError('Please fill in all the fields correctly.')
+console.log(error)
+}
+
+if (data) {
+  setFormError(null)
+  console.log(data)
+  navigate('/')
+
+}
+  }
   useEffect(() => { //to fetch the variety the instant it loads up
     const fetchVariety = async () => {
       
@@ -41,7 +67,7 @@ fetchVariety()
   return (
     <div className="page update">
       <div className="page create">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input 
           type="text" 
@@ -65,11 +91,13 @@ fetchVariety()
           onChange={(e) => setRating(e.target.value)}
         />
 
-        <button>Update Variety Recipe</button>
+        <button>Update Variety Recipe</button> 
+        {formError && <p className="error">{formError}</p>}
       </form>
+      
     </div>
     </div>
   )
-}
+} 
 
 export default Update
