@@ -51,6 +51,7 @@ const Home = () => {
       {fetchError && (<p>{fetchError}</p>)}
       {varieties && (
         <div className="varieties">
+          <h3>Random Five Alive Varieties CRUD app. Feel free to add whatever you feel like. Also, the colour scheme is simply a result of me messing around with the five alive colour scheme.</h3>
           <div className="order-by">
             <p>Order by:</p>
             <button onClick={() => setOrderBy('created_at')}>Time Created</button>
