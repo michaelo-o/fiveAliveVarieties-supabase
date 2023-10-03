@@ -1,23 +1,23 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import supabase from '../config/supabaseClient'
 
 
 const VarietyCard = ({ variety, onDelete }) => {
 
     const handleDelete = async () => {
-const {data, error} = await supabase
-.from('five-alive-varieties')
-.delete() //to delete, obviously
-.eq('id', variety.id) //to delete the record where its id is EQuals to the id of the particular variety
-.select()
+        const { data, error } = await supabase
+            .from('five-alive-varieties')
+            .delete() //to delete, obviously
+            .eq('id', variety.id) //to delete the record where its id is EQuals to the id of the particular variety
+            .select()
 
-if (error) {
-    console.log(error)
-}
-if (data) {
-    console.log(data)
-    // onDelete(variety.id) updating local state
-}
+        if (error) {
+            console.log(error)
+        }
+        if (data) {
+            console.log(data)
+            onDelete(variety.id) // updating local state
+        }
     }
     return (
         <>
